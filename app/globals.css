@@ -68,3 +68,6 @@
 html { height: 100%; overflow:scroll; }
 body { height: 100%; }
 
+.mapboxgl-ctrl-bottom-right {
+  display: none;
+}
