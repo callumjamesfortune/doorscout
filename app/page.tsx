@@ -128,7 +128,7 @@ const HouseNumberMap: React.FC = () => {
   }, [following]);
 
   return (
-    <div className="w-full h-screen flex flex-col overflow-hidden">
+    <div className="w-full h-[100dvh] flex flex-col overflow-hidden">
       <nav className="bg-black h-20 text-white text-[1.5em] font-bold flex items-center justify-between px-6">
         <span>DoorScout</span>
         <button
