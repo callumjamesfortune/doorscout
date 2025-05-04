@@ -98,6 +98,7 @@ const HouseNumberMap: React.FC = () => {
     // Recenter on user when switching back to following mode
     if (following && latestPosition.current) {
       map.setCenter(latestPosition.current);
+      map.setZoom(18);
     }
   }, [following]);
 
@@ -120,7 +121,7 @@ const HouseNumberMap: React.FC = () => {
           onClick={() => setFollowing((prev) => !prev)}
           className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition"
         >
-          {following ? 'Stop Following' : 'Start Following'}
+          {following ? 'Explore' : 'Track'}
         </button>
       </nav>
       <div id="map1" className="w-full flex-grow relative">
