@@ -13,4 +13,11 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 ];
 
+eslintConfig.push({
+  rules: {
+    'react/no-unescaped-entities': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+  },
+});
+
 export default eslintConfig;

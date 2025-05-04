@@ -8,13 +8,27 @@ declare global {
   }
 }
 
+interface TomTomMap {
+  setCenter: (coords: [number, number]) => void;
+  setZoom: (level: number) => void;
+  dragPan: { enable(): void; disable(): void };
+  scrollZoom: { enable(): void; disable(): void };
+  touchZoomRotate: { enable(): void; disable(): void };
+  remove(): void;
+}
+
 const HouseNumberMap: React.FC = () => {
   const [following, setFollowing] = useState(true);
-  const mapRef = useRef<any>(null);
+  const mapRef = useRef<TomTomMap | null>(null);
   const markerRef = useRef<HTMLDivElement | null>(null);
   const isInitialised = useRef(false);
   const latestPosition = useRef<[number, number] | null>(null);
   const locationWatchId = useRef<number | null>(null);
+  const followingRef = useRef(following);
+
+  useEffect(() => {
+    followingRef.current = following;
+  }, [following]);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -58,7 +72,7 @@ const HouseNumberMap: React.FC = () => {
         latestPosition.current = userCoordinates;
 
         // Only centre on first fix if following was initially enabled
-        if (!isInitialised.current && following && mapRef.current) {
+        if (!isInitialised.current && followingRef.current && mapRef.current) {
           mapRef.current.setCenter(userCoordinates);
           isInitialised.current = true;
         }
